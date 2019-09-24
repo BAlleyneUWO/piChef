@@ -1,0 +1,29 @@
+
+<ion-header >
+
+    <ion-navbar color="primary">
+      <ion-title>{{recipeData.label}}</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding >
+     <h2 color="dark">Ingredients</h2>
+     <ul>
+       <li color="dark" *ngFor="let ingredient of recipeData.ingredientLines"><h4>{{ingredient}}</h4></li>
+     </ul>
+      <h2>Diet Labels</h2>
+      <ul>
+        <li *ngFor="let diet of recipeData.dietLabels"><h4>{{diet}}</h4></li>
+      </ul>
+
+      <h2>Health Labels</h2>
+      <ul>
+        <li *ngFor="let health of recipeData.healthLabels"><h4>{{health}}</h4></li>
+      </ul>
+     <h2 color="dark">Method</h2>
+     <h4>If the component below fails to load, you can visit the website <a href="{{recipeData.url}}">here</a>.</h4>
+     <iframe height="100%" width="100%" [src]="urlpaste()"></iframe>
+  
+  </ion-content>

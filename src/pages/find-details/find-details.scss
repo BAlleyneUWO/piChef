@@ -1,0 +1,28 @@
+page-find-details {
+  h2{
+      color: rgb(0, 26, 255);
+  }
+  
+  
+
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        //border: 2px solid rgb(0, 17, 255);
+        border: 2px solid rgb(0, 0, 0);
+        color: #fff;
+    }
+    ul li {
+        padding: 10px 18px;
+        border-bottom: 2px solid #000000;
+    }
+    ul li:last-child {
+        border-bottom: none
+    }
+
+    ion-content{
+        opacity:0.8;
+        background-image: url('../assets/imgs/iChefDetailsless.jpg');
+    }
+}

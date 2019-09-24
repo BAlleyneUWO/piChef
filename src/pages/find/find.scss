@@ -1,0 +1,21 @@
+page-find {
+  img{
+    opacity: 1; 
+  }
+  .recipe-card{
+    background: #545454;
+    border: 1px solid color($colors, secondary);
+  }
+
+  #healthBtn{
+     background: color($colors, health);
+  }
+
+  #err{
+    color:#fff;
+  }
+
+  #edamam{
+      color:#fff;
+  }
+}

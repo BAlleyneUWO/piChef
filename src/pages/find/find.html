@@ -1,0 +1,38 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title >Find</ion-title>
+    <ion-buttons end color="health">
+      <button ion-button id="healthBtn" color="light" (click)="openHealth()" >
+          Toggle Health Mode <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+ 
+<ion-content padding color="primary">
+  <form #f="ngForm" (ngSubmit)="onSearch(f)">
+    <ion-searchbar ngModel name="items" required placeholder="What are you cooking?"></ion-searchbar>
+        <div id="edamam">Powered by edamam</div>
+    <button block id="search" ion-button type="submit" [disabled]="timerBol == true">Search {{timerVal}}</button>
+  </form>
+
+<div *ngIf="results">
+  <ion-card *ngFor="let recipeImg of pictures" class="recipe-card" (click)="detailsPage(recipeImg.recipe)">
+      <ion-card-header>
+          {{recipeImg.recipe.label}}
+          <ion-buttons >
+              Calories: {{recipeImg.recipe.calories}}
+            </ion-buttons>
+        </ion-card-header>
+      <img src="{{recipeImg.recipe.image}}" width="150px;" height="210px;"/>
+    </ion-card>
+</div>
+
+    <h2 id="noRecipes" *ngIf="results == false">No recipes found that match your search. Please try again.</h2>
+    <h2 id="err" *ngIf="err == true">An error has occurred. Please wait 1-2 minutes and try again.</h2>
+</ion-content>
+ 

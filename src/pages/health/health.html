@@ -1,0 +1,80 @@
+
+<ion-header>
+
+    <ion-navbar hideBackButton color="health">
+        <ion-title >Find</ion-title>
+        <ion-buttons end color="health">
+          <button ion-button id="chealthBtn" color="light" (click)="closeHealth()" >
+              Close Health Mode <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form #f="ngForm" (ngSubmit)="onSearch(f)">
+        <ion-searchbar ngModel name="items" placeholder="What are you cooking?"></ion-searchbar>
+        <div id="edamam">Powered by edamam</div>
+
+    <ion-item>
+        <ion-label color="health">Health Restrictions</ion-label>
+        <ion-select name="hRestrict" [(ngModel)]="health" multiple="true">
+          <ion-option value="gluten-free">Gluten Free</ion-option>
+          <ion-option value="dairy-free">Dairy Free</ion-option>
+          <ion-option value="low-sugar">No Sugar</ion-option>
+          <ion-option value="sugar-conscious">Sugar Conscious</ion-option>
+          <ion-option value="vegan">Vegan</ion-option>
+          <ion-option value="vegetarian">Vegetarian</ion-option>
+          <ion-option value="alcohol-free">Alcohol Free</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label color="health">Diet Restrictions</ion-label>
+        <ion-select name="dRestrict" [(ngModel)]="diet" multiple="true">
+          <ion-option value="low-sodium">Low Sodium</ion-option>
+          <ion-option value="low-fat">Low Fat</ion-option>
+          <ion-option value="low-carb">Low Carb</ion-option>
+          <ion-option value="high-protein">High Protein</ion-option>
+          <ion-option value="high-fiber">High Fiber</ion-option>
+          <ion-option value="balanced">Balanced</ion-option>
+        </ion-select>
+      </ion-item>
+      <h5 color="primary" >Calorie Range(Unstable) <ion-icon name="information-circle" (click)="info()"></ion-icon></h5> 
+    
+      <ion-list>
+        <ion-item>
+            <ion-label color="health" fixed>Minimum</ion-label> 
+          <ion-input name="min" ngModel color="primary" type="number" value="0"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color="health" fixed>Maximum</ion-label>
+          <ion-input name="max" ngModel color="primary" type="number" value="5000"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-item>
+        <ion-label color="health" stacked>Exclude Ingredients</ion-label>
+        <ion-input name="exclude" ngModel type="text" placeholder="Example: vinegar, nuts"></ion-input>
+      </ion-item>
+
+      <button block id="search" ion-button type="submit" [disabled]="timerBol == true">Search {{timerVal}}</button>
+      </form>
+
+      <div *ngIf="results">
+          <ion-card *ngFor="let recipeImg of pictures" class="recipe-card" (click)="detailsPage(recipeImg.recipe)">
+              <ion-card-header>
+                  {{recipeImg.recipe.label}}
+                  <ion-buttons >
+                    Calories: {{recipeImg.recipe.calories}}
+                  </ion-buttons>
+                </ion-card-header>
+              <img src="{{recipeImg.recipe.image}}" width="150px;" height="210px;"/>
+            </ion-card>
+        </div>
+        
+            <h2 id="noRecipes" *ngIf="results == false">No recipes found that match your search. Please try again.</h2>
+            <h2 id="err" *ngIf="err == true">An error has occurred. Did you select any of the health options? A minimum of 1 must be selected. Please wait 1-2 minutes and try again.</h2>
+      
+</ion-content>
